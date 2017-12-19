@@ -1,0 +1,82 @@
+<!-- Main header start -->
+
+<header class="main-header">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navigation" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+                <a [routerLink]="['/Home']" class="logo">
+                    <img src="./assets/img/House-Lannister-Main-Shield.png" alt="logo">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-collapse collapse" role="navigation" aria-expanded="true" id="app-navigation">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                                <a [routerLink]="['/Home']">
+                                    Home
+                                </a>
+                            </li>
+                        <li>
+                            <a [routerLink]="['/About']">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/contact']">
+                                Contact Us
+                            </a>
+                        </li>
+
+                    <li>
+
+                        <a [routerLink]="['/Login']">
+                            LogIn
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/Signup']">
+                            Register
+                        </a>
+                    </li>
+
+                    
+                    <!-- <li>
+                            <a (click)="myAccount()">
+                                My Account
+                            </a>
+    
+                        </li> -->
+                    <!-- <li>                        
+                          <button value="My Account" (click)="myDashboard()"></button>
+                    </li> -->
+
+
+                </ul>
+
+
+
+            </div>
+
+            <!-- /.navbar-collapse -->
+            <!-- /.container -->
+        </nav>
+    </div>
+</header>
+<!-- Main header end -->
+
+
+
+
+
+
+<router-outlet></router-outlet>

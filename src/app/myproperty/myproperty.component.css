@@ -1,0 +1,14 @@
+table,th,tr,td{
+    border:2px black solid;
+    text-align: center
+}
+td:hover{
+    color:grey;
+}
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+  #edit{
+      margin-top: 50px;
+  }

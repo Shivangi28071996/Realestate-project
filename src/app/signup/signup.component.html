@@ -1,0 +1,308 @@
+<div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+        <!-- Form content box start -->
+        <div class="form-content-box">
+            <!-- details -->
+            <div class="details">
+                <!-- Logo-->
+                <a href="index.html">
+                    <img src="./assets/img/House-Lannister-Main-Shield.png" class="cm-logo" alt="black-logo">
+                </a>
+                <!-- Name -->
+                <h3>Signup</h3>
+                <!-- Divider -->
+                <!-- Form start-->
+                <form  #f="ngForm" (ngSubmit)="signup(f.value,sel.value,cp.value)">
+                    <div class="pull-left">
+                    <label>Name :</label>
+                </div>
+                    <div class="form-group">
+                            <input type="text" name="fullname" class="input-text alpha_bet" placeholder="Full Name" 
+                            required minlength="3" maxlength="50" pattern="^[a-zA-Z_ ]*$" #fullname="ngModel" ngModel>
+                            <span class="validate" *ngIf="fullname.errors && (fullname.touched || fullname.dirty)">
+                                    <span class="msgs" *ngIf="fullname.errors.required && fullname.touched">
+                                        Field Required</span>
+                                     <span class="msgs" *ngIf="fullname.errors.pattern && (fullname.errors.required || fullname.touched)">
+                                         Full name must only have alphabets</span> 
+                                 </span>
+                            
+                    </div>
+                    <div class="pull-left"><label>Mobile Number :</label></div>
+                    <div class="form-group">
+                            
+                            <input type="text" name="phone" class="input-text mobileNo" placeholder="Mobile number here" minlength="10" maxlength="10"
+                            required pattern="^[6789]\d{9}$" #phone="ngModel" ngModel >
+                            <span class="validate" *ngIf="phone.errors && (phone.touched || phone.dirty)">
+                               <span class="msgs" *ngIf="phone.errors.required && phone.touched">
+                                   Field Required</span>
+                                <span class="msgs" *ngIf="phone.errors.pattern && (phone.errors.required
+                                 || phone.touched)">
+                                    Not a valid phone number</span> 
+                            </span>
+                     </div>
+                     <div class="pull-left"><label>Username:</label></div>
+                     <div class="form-group">
+                            
+                        <input type="text" name="username" class="input-text" placeholder="Username" minlength="3" maxlength="20" 
+                        required pattern="^[a-zA-Z0-9 ]*$"  #username="ngModel" ngModel (keyup)="checkUsername(username.value)">
+                        <span class="validate" *ngIf="username.errors && (username.touched || username.dirty)">
+                                <span class="msgs" *ngIf="username.errors.required && username.touched">
+                                    Field Required</span>
+                                 <span class="msgs" *ngIf="username.errors.pattern && (username.errors.required || username.touched)">
+                                    Username must only have alphabets and numbers</span>
+                             </span> 
+                        
+                     </div>
+                     <div [hidden]="!b">
+                        <h5>Username already exist</h5>
+                    </div>
+                    <div class="pull-left"><label>Who am i ?</label></div>
+                     <div>
+                            
+                        <select class="form-control"  required #sel>
+                            <option value="seller">I am Seller</option>
+                            <option value="buyer">I am Buyer</option>
+                          </select>    
+                     </div>
+                     <!-- <div class="space">
+
+                     </div>
+                      -->
+                      <div class="pull-left"><label>Email :</label></div>
+                     <div class="form-group">
+                            
+                            <input type="email" name="email" class="input-text" placeholder="Email Address" [value]="email.value?.toLowerCase()"
+                            required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                            #email="ngModel" ngModel>
+                            <span class="validate" *ngIf="email.errors && (email.touched || email.dirty)">
+                                    <span class="msgs" *ngIf="email.errors.required && email.touched">
+                                        Field Required</span>
+                                     <span class="msgs" *ngIf="email.errors.pattern && (email.errors.required || email.touched)">
+                                        Email format should be <small><b>xyz@abc.com</b></small></span>
+                                 </span>
+                                </div>
+                        
+                                <div class="pull-left"><label>Password ( Must have 8 characters,atleast 1 number, 1 uppercase, 1 lowercase and 1 special character ):</label></div>
+
+                            <div class="form-group">
+                                    
+                                <input type="{{type}}" name="password" class="input-text" placeholder="Password" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" #password="ngModel"  ngModel>
+                                <a (click)="toggleShow()">Show/Hide</a>
+                                <span class="msgs"></span>
+                                <span class="validate" *ngIf="password.errors && (password.touched || password.dirty)">
+                                        <span class="msgs" *ngIf="password.errors.required && password.touched">
+                                            Field Required</span>  
+                                </span> 
+                            </div>
+                            <div class="pull-left"><label>Confirm Password</label></div>
+                            <div class="form-group">
+                                    
+                                <input type="{{type1}}" name="cp" class="input-text"
+                                placeholder="Confirm Password" required #cp="ngModel"  ngModel ><a (click)="toggleShow1()">Show/Hide</a>
+                                <span *ngIf="flag">
+                                    <span ng-show="">{{message}}</span>
+                                </span>
+                            </div> 
+                            <div [hidden]="!a">
+                                <h5>Password and Confirm Password should be same</h5>
+                            </div>
+                                
+                                <div class="form-group">
+
+                                    <button type="submit" class="button-md button-theme btn-block" data-toggle="modal" data-target="#otp"
+                                    [disabled]="!f.valid">Signup</button>
+                                    
+                                </div>   
+                </form>
+                <!-- Form end-->
+            </div>
+                  <!-- Modal -->        
+           <!-- Footer -->
+           <div class="footer">
+                <span>
+                 <a  [routerLink] = "['/Login']">Return to Login</a>
+                
+                </span>
+                |
+                 <span>
+                     <a  [routerLink] = "['/Home']">Return to Home</a>
+                </span>
+            </div>
+        </div>
+        <!-- Form content box end -->
+    </div>
+</div>
+</div>
+<div *ngIf="otp">
+ <div class="modal fade" id="otp" role="dialog">
+     <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">OTP Verification</h4>
+            </div>
+            <div class="modal-body">
+                <label>Enter OTP:</label>                  
+                <input type="text" placeholder="Enter Otp" minlength="4" maxlength="4" class="mobileNo" #OTPverify ngModel>
+                <button type="button" (click)="Otpverify(OTPverify.value)" class="btn btn-default " >Send OTP</button>
+                <div [hidden]="!otpmsg">
+                    <h5>Please enter valid OTP</h5>
+                </div>
+            </div>  
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>    
+
+<!-- Footer start -->
+<footer class="main-footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 footer-item">
+                <div class="footer-item-content">
+                    <a href="index.html" class="footer-logo">
+                        <img src="./assets/img/House-Lannister-Main-Shield.png" alt="footer-logo">
+                    </a>
+                    <div class="clearfix"></div>
+                    <!-- paragraph -->
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item">
+                <div class="footer-item-content">
+                    <h2 class="title">Address</h2>
+                    <!-- Contact Info -->
+                    <ul class="contact-info">
+                        <li class="clearfix">
+                            <i class="fa fa-map-marker fa-lg"></i>
+                            <label>F-15 Kalkaji Delhi</label>
+                        </li>
+                        <li class="clearfix">
+                            <i class="fa fa-mobile fa-lg"></i>
+                            <label>+55 417-634-7071</label>
+                        </li>
+                        <li class="clearfix">
+                            <i class="fa fa-envelope-o fa-lg"></i>
+                            <label>
+                                <a href="mailto:sales@TeamTiger.com">sales@TeamTiger.com</a>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item clearfix">
+                <div class="footer-item-content">
+                    <h2 class="title">Helpful Links</h2>
+                    <ul class="links">
+                            <li>
+                                    <a  [routerLink] = "['/Login']">Login</a>
+                                </li>
+                                <li>
+                                    <a [routerLink] = "['/Signup']">Register</a>
+                                </li>
+                                <li>
+                                    <a  [routerLink] = "['/Signup']">Sign Up</a>
+                                </li>
+                                <li>
+                                    <a [routerLink] = "['/Pricing']">Pricing</a>
+                                </li>
+                                <li>
+                                    <a [routerLink] = "['/About']">About</a>
+                                </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item clearfix">
+                <div class="footer-item-content">
+                    <div class="newsletter">
+                        <h2 class="title">Newsletter</h2>
+                        <div class="f-text">
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+
+                        <form action="#" method="post">
+                            <p>
+                                <input class="nsu-field btn-block" id="nsu-email-0" type="text" name="email" placeholder="Enter your Email Address" required="">
+                            </p>
+
+                            <p>
+                                <button type="submit" class="button-sm button-theme btn-block">Signup</button>
+
+                            </p>
+                        </form>
+                        <!-- / Newsletter Sign-Up -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer end-->
+
+<!-- Sub footer start -->
+<div class="sub-footer">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="copy-right">
+                © 2017 <a href="#"></a>‐ All Rights Reserved
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="social-list">
+                <ul class="clearfix">
+                    <li class="twitter">
+                        <a href="../../twitter.com/mabuc.html" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="facebook">
+                        <a href="../../www.facebook.com/mabuc.html" target="_blank">
+                            <i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="youtube">
+                        <a href="../../youtube.com/index.html" target="_blank">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="linkedin">
+                        <a href="../../linkedin.com/index.html" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="pinterest">
+                        <a href="../../www.pinterest.com/mabuc" target="_blank">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li class="dribbble">
+                        <a href="../../dribbble.com/mabuc.html" target="_blank">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </li>
+                    <li class="gplus">
+                        <a href="../../google.com/index.html" target="_blank">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li class="instagram">
+                        <a href="../../www.instagram.com/envato/index.html" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="rss">
+                        <a href="../../feedburner.com/index.html" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub footer end -->

@@ -1,0 +1,10 @@
+.jumbotron{
+    background-color: white;
+    font-size: 30px;
+    height:338px;
+}
+p{
+    color:gray;
+    padding-left: 80px;
+    padding-top: 60px;
+}

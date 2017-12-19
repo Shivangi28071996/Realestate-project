@@ -1,0 +1,11 @@
+select {
+    width:100%;
+}
+.space{
+    padding-bottom: 15px;
+}
+button:disabled{
+    border:2px solid black;
+    background-color:white;
+    color:black;
+}

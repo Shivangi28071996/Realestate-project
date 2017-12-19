@@ -1,0 +1,474 @@
+
+
+
+
+<!-- Banner start -->
+<div class="banner text-center">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="./assets/img/banner/banner-slider-1.jpg" alt="banner-slider-1">
+                <div class="container">
+                    <div class="carousel-caption banner-slider-inner banner-top-align">
+                        <div>
+                            <h1 data-animation="animated fadeInDown delay-05s"><span>Welcome</span></h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./assets/img/banner/banner-slider-2.jpg" alt="banner-slider-2">
+                <div class="carousel-caption banner-slider-inner banner-top-align">
+                    <div>
+                        <h1 data-animation="animated fadeInDown delay-05s"><span>Find your </span> Dream House</h1>
+                        <p data-animation="animated fadeInUp delay-05s">We help you find your Dream House..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./assets/img/banner/banner-slider-3.jpg" alt="banner-slider-3">
+                <div class="carousel-caption banner-slider-inner banner-top-align">
+                    <div>
+                        <h1 data-animation="animated fadeInDown delay-05s"><span>Find your </span> Dream Office</h1>
+                        <p data-animation="animated fadeInUp delay-05s">We help you find your Dream Office..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./assets/img/banner/banner-slider-4.jpg" alt="banner-slider-4">
+                <div class="carousel-caption banner-slider-inner banner-top-align">
+                    <div>
+                        <h1 data-animation="animated fadeInDown delay-05s"><span>Find your </span> Office Space</h1>
+                        <p data-animation="animated fadeInUp delay-05s">We help you find your Office Space..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="slider-mover-left" aria-hidden="true">
+                <img src="./assets/img/chevron-left.png" alt="chevron-left">
+            </span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="slider-mover-right" aria-hidden="true">
+                <img src="./assets/img/chevron-right.png" alt="chevron-right">
+            </span>
+            <span class="sr-only">Next</span>
+        </a>
+        
+
+
+    </div>
+
+    <div class="search-area ">
+        <div class="search-area-inner">
+            <div class="search-contents show-search-area animated fadeInUp">
+                <div class="row">
+                    <form #form="ngForm">
+                        <div class="form-group">
+                    <input type="text" id="location" class="form-control" name="location" placeholder="Search by location"  required #location  ngModel>
+                    </div>
+                        <div class="form-group">
+                            <button class="search-button" (click)="locationList(location.value)">Search</button>
+                        </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+<div class="clearfix"></div>
+
+
+<!-- Recent properties start -->
+<div class="recent-properties">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Featured Properties</h1>
+            <div class="border">
+                <div class="border-inner"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <form *ngFor="let details of property">
+            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInUp delay-03s">
+                <!-- Recent properties box start -->
+                <div class="thumbnail recent-properties-box">
+                    <img [src]="details.image" alt="properties-1" class="img-responsive">
+                    <!-- Detail -->
+                    <div class="caption detail">
+                        <!-- Header -->
+                        <header>
+                            <div class="pull-left">
+                                <h1 class="title">
+                                    <a [routerLink]="['/propertyDetails']" (click)="displayProperty(details.propId)">{{details.title}}</a>
+                                </h1>
+                            </div>
+                            <div class="pull-right">
+                                    <p>
+                                        {{details.propStatus}}
+                                    </p>
+                                </div>
+                        </header>
+                        <!-- Location -->
+                        <h3 class="location">
+                                <i class="fa fa-map-marker"></i>{{details.address}}
+                        </h3>
+                        <!-- Facilities List -->
+                        <ul class="facilities-list clearfix">
+                                    <li>
+                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i><strong>Area(in sqft): </strong>{{details.area}}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-monitor"></i><strong>Property Type: </strong>{{details.type}}
+                                    </li>
+                                <li>
+                                    <i class="flaticon-bed"></i><strong>Bedroom: </strong>{{details.rooms}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-bath"></i><strong>Bathroom: </strong>{{details.bathroom}}
+                                </li>
+                        </ul>
+                        <!-- Footer -->
+                        <div class="footer">
+                                <i class="fa fa-user"></i> {{details.name}}
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Recent properties box end -->
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<!-- Recent properties end -->
+
+
+<!-- Categories start -->
+<div class="categories">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Most Popular Places</h1>
+            <div class="border">
+                <div class="border-inner"></div>
+            </div>
+        </div>
+        <div class="row wow">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6 wow fadeInLeft delay-04s">
+                        <div class="category">
+                            <div class="category_bg_box cat-1-bg">
+                                <div class="category-overlay">
+                                    <span class="category-content">
+                                        <span class="category-title">Gurgaon</span><br>
+                                        <!-- <span class="category-subtitle">27 Properties</span>
+                                        <br>
+                                        <a href="#" class="btn button-md button-theme">View All</a> -->
+                                    </span><!-- /.category-content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 wow fadeInLeft delay-04s">
+                        <div class="category">
+                            <div class="category_bg_box cat-2-bg">
+                                <div class="category-overlay">
+                                    <span class="category-content">
+                                        <span class="category-title">Noida</span><br>
+                                        <!-- <span class="category-subtitle">98 Properties</span>
+                                        <br>
+                                        <a href="#" class="btn button-md button-theme">View All</a> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 wow fadeInUp delay-04s">
+                        <div class="category">
+                            <div class="category_bg_box cat-3-bg">
+                                <div class="category-overlay">
+                                    <span class="category-content">
+                                        <span class="category-title">New Delhi</span><br>
+                                        <!-- <span class="category-subtitle">98 Properties</span>
+                                        <br>
+                                        <a href="#" class="btn button-md button-theme">View All</a> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInRight delay-04s">
+                <div class="category">
+                    <div class="category_bg_box category_long_bg cat-4-bg">
+                        <div class="category-overlay">
+                            <span class="category-content">
+                                <span class="category-title">NCR</span><br>
+                                <!-- <span class="category-subtitle">98 Properties</span>
+                                <br>
+                                <a href="#" class="btn button-md button-theme">View All</a> -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Categories end-->
+
+
+<!-- Counters strat -->
+<!-- <div class="counters">
+    <div class="counters-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 wow fadeInLeft delay-04s">
+                    <div class="counter-box">
+                        <i class="flaticon-tag"></i>
+                        <h1 class="counter">967</h1>
+                        <p>Listings For Sale</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInLeft delay-04s">
+                    <div class="counter-box">
+                        <i class="flaticon-symbol-1"></i>
+                        <h1 class="counter">1276</h1>
+                        <p>Listings For Rent</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInRight delay-04s">
+                    <div class="counter-box">
+                        <i class="flaticon-people"></i>
+                        <h1 class="counter">396</h1>
+                        <p>Onwer's</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInRight delay-04s">
+                    <div class="counter-box">
+                        <i class="flaticon-people-1"></i>
+                        <h1 class="counter">177</h1>
+                        <p>Brokers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Counters end -->
+
+<!-- Partners block start 
+<div class="partners-block">
+    <div class="container">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="carousel our-partners slide" id="ourPartners">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <a href="#">
+                                    <img src="./assets/img/brand/audiojungle.png" alt="audiojungle">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <a href="#">
+                                    <img src="./assets/img/brand/themeforest.png" alt="themeforest">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <a href="#">
+                                    <img src="./assets/img/brand/tuts.png" alt="tuts">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <a href="#">
+                                    <img src="./assets/img/brand/graphicriver.png" alt="graphicriver">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <a href="#">
+                                    <img src="./assets/img/brand/codecanyon.png" alt="codecanyon">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#ourPartners" data-slide="prev"><i class="fa fa-chevron-left icon-prev"></i></a>
+                    <a class="right carousel-control" href="#ourPartners" data-slide="next"><i class="fa fa-chevron-right icon-next"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ Partners block end -->
+
+<!-- Footer start -->
+<footer class="main-footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 footer-item">
+                <div class="footer-item-content">
+                    <a href="index.html" class="footer-logo">
+                        <img src="./assets/img/House-Lannister-Main-Shield.png" alt="footer-logo">
+                    </a>
+                    <!-- <div class="clearfix"></div>
+                    <!-- paragraph -->
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div> -->
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item">
+                <div class="footer-item-content">
+                    <h2 class="title">Address</h2>
+                    <!-- Contact Info -->
+                    <ul class="contact-info">
+                        <li class="clearfix">
+                            <i class="fa fa-map-marker fa-lg"></i>
+                            <label>F-15 Kalkaji Delhi</label>
+                        </li>
+                        <li class="clearfix">
+                            <i class="fa fa-mobile fa-lg"></i>
+                            <label>+91-9898167437</label>
+                        </li>
+                        <li class="clearfix">
+                            <i class="fa fa-envelope-o fa-lg"></i>
+                            <label>
+                                <a href="mailto:sales@TeamTiger.com">sales@TeamTiger.com</a>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item clearfix">
+                <div class="footer-item-content">
+                    <h2 class="title">Helpful Links</h2>
+                    <ul class="links">
+                        <li>
+                            <a  [routerLink] = "['/Login']">Login</a>
+                        </li>
+                        <li>
+                            <a [routerLink] = "['/Signup']">Register</a>
+                        </li>
+                        <li>
+                            <a [routerLink] = "['/Pricing']">Pricing</a>
+                        </li>
+                        <li>
+                            <a [routerLink] = "['/About']">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 footer-item clearfix">
+                <div class="footer-item-content">
+                    <div class="newsletter">
+                        <h2 class="title">Newsletter</h2>
+                        <div class="f-text">
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+
+                        <form action="#" method="post">
+                            <p>
+                                <input class="nsu-field btn-block" id="nsu-email-0" type="text" name="email" placeholder="Enter your Email Address" required="">
+                            </p>
+
+                            <p>
+                                <button type="submit" class="button-sm button-theme btn-block">Signup</button>
+
+                            </p>
+                        </form>
+                        <!-- / Newsletter Sign-Up -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer end-->
+
+<!-- Sub footer start -->
+<div class="sub-footer">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="copy-right">
+                © 2017 <a href="#"></a>‐ All Rights Reserved
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="social-list">
+                <ul class="clearfix">
+                    <li class="twitter">
+                        <a href="../../twitter.com/mabuc.html" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="facebook">
+                        <a href="../../www.facebook.com/mabuc.html" target="_blank">
+                            <i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="youtube">
+                        <a href="../../youtube.com/index.html" target="_blank">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="linkedin">
+                        <a href="../../linkedin.com/index.html" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="pinterest">
+                        <a href="../../www.pinterest.com/mabuc" target="_blank">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li class="dribbble">
+                        <a href="../../dribbble.com/mabuc.html" target="_blank">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </li>
+                    <li class="gplus">
+                        <a href="../../google.com/index.html" target="_blank">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li class="instagram">
+                        <a href="../../www.instagram.com/envato/index.html" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="rss">
+                        <a href="../../feedburner.com/index.html" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub footer end -->

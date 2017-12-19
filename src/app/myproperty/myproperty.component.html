@@ -1,0 +1,396 @@
+<div class="sub-banner">
+      <div class="overlay">
+          <div class="container">
+              <div class="breadcrumb-area">
+                  <div class="top">
+                      <h1>My Properties</h1>
+                  </div>
+                  <ul class="breadcrumbs">
+                      <li><a [routerLink]="['/Home']">Home</a></li>
+                      <li class="active">My Properties</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="my-propertiess">
+      <div class="container">
+          <div class="row">
+                  <div class="col-lg-9 col-md-9 col-sm-12">
+                              <!-- Heading -->
+                              <h1 class="heading">My Properties Listings</h1>
+                              <!-- My propertiess box start -->
+                              <div class="my-properties-box wow fadeInUp delay-03s clearfix">
+                                  <div *ngIf="displayProperty==true">
+                                          <div *ngFor="let i of iproperty2">
+                                  <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-pad my-propertie-theme">
+                                      <img src="" alt="myproperty" class="img-responsive">
+                                  </div> -->
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-pad">
+                                        
+                                      <div class="detail">
+                                          <!-- Header -->
+                                          <header class="clearfix">
+                                                      <div class="pull-right">
+                                                                  <a [routerLink]="['/propertyDetails']" class="button-sm button-theme"  (click)="displayPropertyDetail(i.propId)">Details</a><br>
+                                                                  
+                                                              </div>
+                                              <div class="pull-left">
+                                                  <h1 class="title">
+                                                      {{i.title}}
+                                                  </h1>
+                                                  <h4>
+                                                    <strong>Property Status :</strong>{{i.propertyStat}}
+                                                  </h4>
+                                                  <h5><strong>{{i.propStatus}}</strong><br></h5>
+                                                  
+                                                  <h3 class="location">
+                                                          <i class="fa fa-map-marker"></i>{{i.address}}
+                                                  </h3>
+                                              </div>
+                                              <!-- Btn -->
+                                              
+                                         </header>
+                                         <hr>
+                                          <p>{{i.info}}</p>
+                                      </div>
+                                      <!-- footer -->
+                                      <div class="footer clearfix">
+                                          <div class="col-md-3 col-sm-3 col-xs-3">
+                                              <div class="price">
+                                                      {{i.price}}
+                                              </div>
+                                          </div>
+                                          <!-- <div class="col-md-3 col-sm-3 col-xs-3">
+                                              <div class="date">
+                                                  jun 30, 2016
+                                              </div>
+                                          </div> -->
+                                          <div class="col-md-6 col-sm-6 col-xs-6">
+                                              <div class="listing-meta ">
+                                                  <span>
+                                                      <button  data-toggle="modal" data-target="#edit" (click)="edit1(i.propId)"><i class="fa fa-pencil"></i>Edit</button>
+                                                          
+                                                  </span>
+                                                  <span>
+                                                      <input type="button" value="Activate/Deactivate" data-toggle="modal" data-target="#delete" (click)="delete1(i.propId)">
+                                                    </span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>    
+                                  </div>
+                                </div>
+
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              
+  <div [hidden]="!submitted">
+    <h5> Update Successfully</h5>
+  </div>
+  
+  <div [hidden]="!deleted">
+    <h5> Delete Successfully</h5>
+  </div>
+  
+  <div *ngIf="a==1">
+    <div id="edit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Edit Details</h3>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm">
+              <div class="form-group">
+                    <label>Property Name:</label>
+                    <input type="text"  name="title" class="form-control" [(ngModel)]="iproperty1.title" pattern="[a-zA-Z_ ]*$" #title="ngModel" required ngModel><br>
+                    <span class="validate" *ngIf="title.errors && (title.touched || title.dirty)">
+                        <span class="msgs" *ngIf="title.errors.required && title.touched">Field required</span>
+                        <span class="msgs" *ngIf="title.errors.pattern && (title.errors.required || title.touched)">
+                            Property title must have only alphabets
+                        </span>
+                    </span> 
+              </div>
+              <div class="form-group">
+                    <label>Property Status:</label>
+                    <select class="form-control" name="propStatus" required [(ngModel)]="iproperty1.propStatus" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                        <option value="SALE">For Sale</option>
+                         <option value="RENT">For Rent</option>
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label>Type:</label>
+                  <select class="form-control" name="type" required [(ngModel)]="iproperty1.type" ngModel>
+                        <option value="" selected>-- select an option --</option> 
+                        <option value="Apartment">Apartment</option>
+                        <option value="House">House</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Garage">Garage</option>
+                        <option value="Agriculture Plot">Agricultural Plot</option>
+                        <option value="Commercial Plot">Commercial Plot</option>
+                </select>
+            </div>
+              <div class="form-group">
+                    <label>Price:</label>
+                    <input type="text" name="price" class="form-control mobileNo" [(ngModel)]="iproperty1.price" pattern="^[0-9]*$" #price="ngModel" required ngModel><br>
+                    <span class="validate" *ngIf="price.errors && (price.touched || price.dirty)">
+                        <span class="msgs" *ngIf="price.errors.required && price.touched">Field required</span>
+                        <span class="msgs" *ngIf="price.errors.pattern && (price.errors.required || price.touched)">
+                            Price must have only digits
+                        </span>
+                    </span> 
+              </div>
+              <div class="form-group">
+                    <label>Area(in sqft):</label>
+                    <input type="text" name="area" class="form-control mobileNo" [(ngModel)]="iproperty1.area" pattern="^[0-9]*$" 
+                    #area="ngModel" required ngModel><br>
+                    <span class="validate" *ngIf="area.errors && (area.touched || area.dirty)">
+                        <span class="msgs" *ngIf="area.errors.required && area.touched">Field required</span>
+                        <span class="msgs" *ngIf="area.errors.pattern && (area.errors.required || area.touched)">
+                             Area must be in digits
+                        </span>
+                    </span> 
+              </div>
+              <div class="form-group">
+                    <label>Address:</label>
+                    <input type="text" name="address" class="form-control" [(ngModel)]="iproperty1.address" required ngModel><br>
+              </div>
+              <div class="form-group">
+                    <label>Location:</label>
+                    <input type="text" name="location" class="form-control alpha_bet" [(ngModel)]="iproperty1.location" required ngModel><br>
+              </div>
+              <div class="form-group">
+                    <label>Postal Code:</label>
+                    <input type="text" name="postalcode" class="form-control mobileNo" [(ngModel)]="iproperty1.postalcode" pattern="^[0-9]*$" required #postalcode="ngModel" ngModel><br>
+                    <span class="validate" *ngIf="postalcode.errors && (postalcode.touched || postalcode.dirty)">
+                    <span class="msgs" *ngIf="postalcode.errors.required && postalcode.touched">
+                        Field Required</span>
+
+                     <span class="msgs" *ngIf="postalcode.errors.pattern && (postalcode.errors.required
+                      || postalcode.touched)">
+                         Only numbers</span>
+                        </span>
+              </div>
+              <div class="form-group">
+                  <label>City:</label>
+                  <select class="form-control" name="city" required [(ngModel)]="iproperty1.city" #city="ngModel" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                        <option>New Delhi</option>
+                        <option>Gurgaon</option>
+                        <option>Noida</option>
+                        <option>Faridabad</option>
+                        <option>Ghaziabad</option>
+                        <option>South Delhi</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>State:</label>
+                  <select class="form-control" name="state" required [(ngModel)]="iproperty1.state" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                        <option>Delhi</option>
+                        <option>NCR</option>
+                        
+                        
+                    </select>
+            </div>
+            <div class="form-group">
+                <label>Details:</label>
+                <input type="text" name="info" class="form-control" [(ngModel)]="iproperty1.info" required ngModel><br>
+          </div>
+
+
+
+ <div [hidden]="!display">
+            <div class="form-group">
+                  <label>Building Age:</label>
+                  <select class="form-control" name="buildingage" [(ngModel)]="iproperty1.buildingage" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                        <option>0-1 Years</option>
+                        <option>2-5 Years</option>
+                        <option>6-10 Years</option>
+                        <option>11-20 Years</option>
+                        <option>21-40 Years</option>
+                        <option>40+Years</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label>Floor/Number of Floor:</label>
+                <select class="form-control" name="floor" required [(ngModel)]="iproperty1.floor" ngModel>
+                            <option value="" selected>-- select an option --</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                  </select>
+          </div><div class="form-group">
+            <label>Parking:</label>
+            <select class="form-control" name="noofparking" required [(ngModel)]="iproperty1.noofparking" #noofparking="ngModel" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                  <option>Stilt 4-wheeler</option>
+                  <option>Stilt 2-wheeler</option>
+                  <option>Outside 4-wheeler</option>
+                  <option>Outside 2-wheeler</option>
+                  <option>Not Available</option>
+              </select>
+      </div>
+      <div class="form-group">
+            <label>Furnished:</label>
+            <select class="form-control" name="furnished" required [(ngModel)]="iproperty1.furnished" ngModel>
+                  <option value="" selected>-- select an option --</option>
+                  <option>Fully Furnished</option>
+                  <option>Semi Furnished</option>
+                  <option>Not Furnished</option>
+              </select>
+      </div>
+      <div class="form-group">
+            <label>View:</label>
+            <select class="form-control"  name="view" required [(ngModel)]="iproperty1.view" ngModel>
+                        <option value="" selected>-- select an option --</option>
+                  <option>None</option>
+                  <option>Shermukha</option>
+                  <option>Gaumukha</option>
+                  
+              </select>
+      </div>
+      <div class="form-group">
+        <label>Bedroom:</label>
+        <select class="form-control" name="rooms" required [(ngModel)]="iproperty1.rooms" ngModel>
+            <option value="" selected>-- select an option --</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+        </select>
+  </div>
+  <div class="form-group">
+        <label>Bathroom:</label>
+        <select class="form-control" name="bathroom" required [(ngModel)]="iproperty1.bathroom" ngModel>
+            <option value="" selected>-- select an option --</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+        </select>
+  </div>
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox1" type="checkbox"  name="parking" [(ngModel)]="iproperty1.parking" ngModel>
+             <label for="checkbox1"> Free Parking</label>
+          </div>
+       
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox2" type="checkbox"  name="ac" [(ngModel)]="iproperty1.ac" ngModel>
+             <label for="checkbox2"> Air Condition</label>
+          </div>
+          <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox3" type="checkbox"  name="balcony" [(ngModel)]="iproperty1.balcony" ngModel>
+             <label for="checkbox3"> Balcony</label>
+          </div>
+        
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox4" type="checkbox"  name="pool" [(ngModel)]="iproperty1.pool" ngModel>
+             <label for="checkbox4">Swimming Pool</label>
+          </div>
+       
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox5" type="checkbox"  name="laundry" [(ngModel)]="iproperty1.laundry" ngModel>
+             <label for="checkbox5">Laundry Room</label>
+          </div>
+        
+        
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox6" type="checkbox"  name="storage" [(ngModel)]="iproperty1.storage" ngModel>
+             <label for="checkbox6">Storage Room</label>
+          </div>
+        
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox7" type="checkbox"  name="gaspipe" [(ngModel)]="iproperty1.gaspipe" ngModel>
+             <label for="checkbox7"> Gaspipe Line</label>
+          </div>
+        
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox8" type="checkbox"  name="alarm" [(ngModel)]="iproperty1.alarm" ngModel>
+             <label for="checkbox8"> Alarm</label>
+          </div>
+        
+        <div class="checkbox checkbox-theme checkbox-circle">
+            <input id="checkbox9" type="checkbox"  name="pooja" [(ngModel)]="iproperty1.pooja" ngModel>
+             <label for="checkbox9"> Pooja Room</label>
+          </div>
+
+</div>
+
+
+
+
+             
+              
+            
+              <div class="form-group">
+                    <label>Owner's name:</label>
+                    <input type="text" name="name" class="form-control alpha_bet" [(ngModel)]="iproperty1.name" #name="ngModel" 
+                    required pattern="[a-zA-Z_ ]*$"><br>
+                    <span class="validate" *ngIf="name.errors && (name.touched || name.dirty)">
+                        <span class="msgs" *ngIf="name.errors.required && name.touched">Field required</span>
+                        <span class="msgs" *ngIf="name.errors.pattern && (name.errors.required || name.touched)">
+                             Invalid Name
+                        </span>
+                    </span> 
+              </div>
+              <div class="form-group">
+                    <label>Owner's email:</label>
+                    <input type="text" name="email" class="form-control" [(ngModel)]="iproperty1.email" #email="ngModel"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required ngModel><br>
+                    <span class="validate" *ngIf="email.errors && (email.touched || email.dirty)">
+                        <span class="msgs" *ngIf="email.errors.required && email.touched">
+                            Field Required</span>
+                         <span class="msgs" *ngIf="email.errors.pattern && (email.errors.required || email.touched)">
+                             Invalid Email</span>
+                     </span>
+
+              </div>
+              <div class="form-group">
+                    <label>Owner's phone:</label>
+                    <input type="text" name="phone" class="form-control mobileNo" [(ngModel)]="iproperty1.phone" #phone="ngModel"
+                    required pattern="[0-9]*$"><br>
+                    <span class="validate" *ngIf="phone.errors && (phone.touched || phone.dirty)">
+                        <span class="msgs" *ngIf="phone.errors.required && phone.touched">Field required</span>
+                        <span class="msgs" *ngIf="phone.errors.pattern && (phone.errors.required || phone.touched)">
+                             Invalid Phone number
+                        </span>
+                    </span> 
+              </div>
+              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="edit(f.value)" >Submit</button>
+          </form> 
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  
+  <div id="delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h4> Are you sure?</h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="yes" (click)="delete(id)"> Yes </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="no">No </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
